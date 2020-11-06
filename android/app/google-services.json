@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "409133412372",
+    "firebase_url": "https://noticias---moviles.firebaseio.com",
+    "project_id": "noticias---moviles",
+    "storage_bucket": "noticias---moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409133412372:android:ff61f79e8d172a15bc3701",
+        "android_client_info": {
+          "package_name": "mx.iteso.noticias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409133412372-03suum6nq4dujjngmolm7qa2h5ghu1jl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.iteso.noticias",
+            "certificate_hash": "9dd86eb3e50bb4310568df506c7b632fa016f126"
+          }
+        },
+        {
+          "client_id": "409133412372-j927ic73fdrjnrdu6jka8dtlsq74pa0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBroTYLPdInHVMoUKQcNwvT0K1HazQ4L8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409133412372-j927ic73fdrjnrdu6jka8dtlsq74pa0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
