@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noticias/models/noticia.dart';
 
@@ -14,13 +15,36 @@ class ItemNoticia extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              //TODO: cambiar image.network por Extended Image con place holder en caso de error o en caso de que esté cargando la imagen
+              //DONE: cambiar image.network por Extended Image con place holder en caso de error o en caso de que esté cargando la imagen
               Expanded(
                 flex: 1,
-                child: Image.network(
+                child: ExtendedImage.network(
                   "${noticia.urlToImage}",
                   height: 100,
                   fit: BoxFit.cover,
+                  loadStateChanged: (ExtendedImageState state) {
+                    switch (state.extendedImageLoadState) {
+                      case LoadState.loading:
+                        return Image.asset(
+                          "assets/loading.gif",
+                          fit: BoxFit.cover,
+                        );
+                        break;
+                      case LoadState.completed:
+                        return Image.network(
+                          "${noticia.urlToImage}",
+                          height: 100,
+                          fit: BoxFit.cover,
+                        );
+                        break;
+                      case LoadState.failed:
+                        return Image.asset(
+                          "assets/fallar.png",
+                          fit: BoxFit.fill,
+                        );
+                        break;
+                    }
+                  },
                 ),
               ),
               Expanded(
