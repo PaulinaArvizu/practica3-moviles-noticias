@@ -27,10 +27,10 @@ class MisNoticiasBloc extends Bloc<MisNoticiasEvent, MisNoticiasState> {
     if (event is LeerNoticiasEvent) {
       try {
         await _getAllNoticias();
-        yield NoticiasDescargadasState();
+        yield NoticiasDescargadasState(noticiasList: _noticiasList);
       } catch (e) {
         yield NoticiasErrorState(
-            errorMessage: "No se pudo descargar noticias: $e");
+            errorMessage: "No se pudo descargar noticias: \n$e");
       }
     } else if (event is CargarImagenEvent) {
       _chosenImage = await _chooseImage(event.takePictureFromCamera);
@@ -57,22 +57,23 @@ class MisNoticiasBloc extends Bloc<MisNoticiasEvent, MisNoticiasState> {
 
   Future _getAllNoticias() async {
     // recuperar lista de docs guardados en Cloud firestore
-    // mapear a objeto de dart (Apunte)
+    // mapear a objeto de dart (Noticia)
     // agregar cada ojeto a una lista
     var misNoticias =
         await FirebaseFirestore.instance.collection("noticias").get();
     _noticiasList = misNoticias.docs
         .map(
-          (elemento) => Noticia(
-            title: elemento['titulo'],
-            description: elemento['descripcion'],
-            author: elemento['autor'],
-            source: elemento['fuente'],
-            urlToImage: elemento['imagen'],
-            publishedAt: elemento['fecha'],
+          (element) => Noticia(
+            title: element['titulo'],
+            description: element['descripcion'],
+            author: element['autor'],
+            source: null, //element['fuente'],
+            urlToImage: element['imagen'],
+            publishedAt: element['fecha'],
           ),
         )
         .toList();
+    print(_noticiasList);
   }
 
   //Guardar elemento en CloudFirestore

@@ -9,7 +9,13 @@ abstract class MisNoticiasState extends Equatable {
 
 class MisNoticiasInitial extends MisNoticiasState {}
 
-class NoticiasDescargadasState extends MisNoticiasState {}
+class NoticiasDescargadasState extends MisNoticiasState {
+  final List<Noticia> noticiasList;
+
+  NoticiasDescargadasState({@required this.noticiasList});
+  @override
+  List<Object> get props => [noticiasList];
+}
 
 class NoticiasCreadaState extends MisNoticiasState {}
 
