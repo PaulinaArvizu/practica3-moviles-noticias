@@ -44,6 +44,7 @@ class ItemNoticia extends StatelessWidget {
                         );
                         break;
                     }
+                    return null;
                   },
                 ),
               ),
