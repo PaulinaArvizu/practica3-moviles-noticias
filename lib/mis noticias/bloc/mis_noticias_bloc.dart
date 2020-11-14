@@ -115,7 +115,7 @@ class MisNoticiasBloc extends Bloc<MisNoticiasEvent, MisNoticiasState> {
   Future<File> _chooseImage(bool fromCamera) async {
     final picker = ImagePicker();
     final PickedFile chooseImage = await picker.getImage(
-      source: ImageSource.camera,
+      source: fromCamera ? ImageSource.camera : ImageSource.gallery,
       maxHeight: 720,
       maxWidth: 720,
       imageQuality: 85,
