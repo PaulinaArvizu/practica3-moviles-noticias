@@ -12,7 +12,7 @@ class CrearNoticia extends StatefulWidget {
 }
 
 //DONE: formulario para crear noticias
-//TODO: tomar fotos de camara o cargar de la galeria
+//DONE: tomar fotos de camara o cargar de la galeria
 //DONE: tomar fecha actual
 
 class _CrearNoticiaState extends State<CrearNoticia> {
@@ -69,98 +69,90 @@ class _CrearNoticiaState extends State<CrearNoticia> {
 
   Widget _formularioCrearNoticia() {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12),
       child: SingleChildScrollView(
-        child: Stack(
-          alignment: FractionalOffset.center,
+        child: Column(
           children: <Widget>[
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _chosenImage != null
-                    ? Image.file(
-                        _chosenImage,
-                        width: 150,
-                        height: 150,
-                      )
-                    : Container(
-                        height: 150,
-                        width: 150,
-                        child: Placeholder(
-                          fallbackHeight: 150,
-                          fallbackWidth: 150,
-                        ),
-                      ),
-                SizedBox(height: 48),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.add_a_photo),
-                      onPressed: () {
-                        _bloc.add(
-                            CargarImagenEvent(takePictureFromCamera: true));
-                        // widget.noticiasBloc.add(ChooseImageEvent());
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.add_photo_alternate_outlined),
-                      onPressed: () {
-                        _bloc.add(
-                            CargarImagenEvent(takePictureFromCamera: false));
-                        // widget.noticiasBloc.add(ChooseImageEvent());
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: 48),
-                TextField(
-                  controller: _titleController,
-                  decoration: InputDecoration(
-                    hintText: "Título",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+            _chosenImage != null
+                ? Image.file(
+                    _chosenImage,
+                    width: 150,
+                    height: 150,
+                  )
+                : Container(
+                    height: 150,
+                    width: 150,
+                    child: Placeholder(
+                      fallbackHeight: 150,
+                      fallbackWidth: 150,
                     ),
                   ),
-                ),
-                SizedBox(height: 12),
-                TextField(
-                  controller: _authorController,
-                  decoration: InputDecoration(
-                    hintText: "Autor",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12),
-                TextField(
-                  controller: _descriptionController,
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    hintText: "Descripción",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24),
-                RaisedButton(
-                  child: Text("Guardar"),
+            SizedBox(height: 48),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.add_a_photo),
                   onPressed: () {
-                    print("Enter onPressed");
-                    _bloc.add(
-                      CrearNoticiaEvent(
-                        titulo: _titleController.text,
-                        descripcion: _descriptionController.text,
-                        autor: _authorController.text,
-                        fuente: "Mi nombre",
-                      ),
-                    );
-                    print("Exit onPressed");
+                    _bloc.add(CargarImagenEvent(takePictureFromCamera: true));
+                    // widget.noticiasBloc.add(ChooseImageEvent());
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.add_photo_alternate_outlined),
+                  onPressed: () {
+                    _bloc.add(CargarImagenEvent(takePictureFromCamera: false));
+                    // widget.noticiasBloc.add(ChooseImageEvent());
                   },
                 ),
               ],
+            ),
+            SizedBox(height: 48),
+            TextField(
+              controller: _titleController,
+              decoration: InputDecoration(
+                hintText: "Título",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            SizedBox(height: 12),
+            TextField(
+              controller: _authorController,
+              decoration: InputDecoration(
+                hintText: "Autor",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            SizedBox(height: 12),
+            TextField(
+              controller: _descriptionController,
+              maxLines: 5,
+              decoration: InputDecoration(
+                hintText: "Descripción",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            SizedBox(height: 24),
+            RaisedButton(
+              child: Text("Guardar"),
+              onPressed: () {
+                print("Enter onPressed");
+                _bloc.add(
+                  CrearNoticiaEvent(
+                    titulo: _titleController.text,
+                    descripcion: _descriptionController.text,
+                    autor: _authorController.text,
+                    fuente: "Mi nombre",
+                  ),
+                );
+                print("Exit onPressed");
+              },
             ),
           ],
         ),
